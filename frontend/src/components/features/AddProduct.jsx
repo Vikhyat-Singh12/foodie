@@ -1,15 +1,17 @@
 
 import React, { useState, useEffect } from 'react';
 import { Upload, Package, Calendar, DollarSign, Tag, Hash } from 'lucide-react';
+import { useAddProductStore } from '../../store/addproduct';
 
 const AddProduct = () => {
+  const {addProduct} = useAddProductStore();
   const [productData, setProductData] = useState({
     name: '',
     category: '',
     quantity: '',
     expiryDate: '',
     price: '',
-    image: null
+    // image: null
   });
 
 // const [isDarkMode, setIsDarkMode] = useState(false);
@@ -77,10 +79,19 @@ const AddProduct = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Product added:', productData);
     // Handle form submission
+    await addProduct(productData);
+    // Reset form after submission
+    setProductData({
+      name: '',
+      category: '',
+      quantity: '',
+      expiryDate: '',
+      price: '',
+    })
   };
 
   return (
@@ -236,7 +247,7 @@ const AddProduct = () => {
               />
             </div>
             
-            <div className="form-group">
+            {/* <div className="form-group">
               <label className={`flex items-center gap-2 font-semibold mb-3 transition-colors duration-300 ${
                 isDarkMode ? 'text-gray-200' : 'text-gray-700'
               }`}>
@@ -273,7 +284,7 @@ const AddProduct = () => {
                   {productData.image ? productData.image.name : 'Drag & drop an image or click to browse'}
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
           
           {/* Submit Button */}

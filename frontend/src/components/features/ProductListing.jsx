@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { Search, Filter, Eye, Edit, Trash2, MoreVertical } from 'lucide-react';
+import { useAddProductStore } from '../../store/addproduct';
 // import './ProductListing.css';
 
 const ProductListing = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const {products} = useAddProductStore();
   
-  const products = [
-    { id: 1, name: 'Fresh Organic Apples', category: 'Fruits', price: '$4.99/kg', stock: 45, status: 'Fresh', image: '🍎', expiryDays: 7 },
-    { id: 2, name: 'Whole Wheat Bread', category: 'Bakery', price: '$2.99', stock: 23, status: 'Fresh', image: '🍞', expiryDays: 3 },
-    { id: 3, name: 'Organic Milk', category: 'Dairy', price: '$3.49', stock: 18, status: 'Expires Soon', image: '🥛', expiryDays: 2 },
-    { id: 4, name: 'Free Range Eggs', category: 'Dairy', price: '$5.99', stock: 67, status: 'Fresh', image: '🥚', expiryDays: 10 },
-    { id: 5, name: 'Fresh Lettuce', category: 'Vegetables', price: '$1.99', stock: 15, status: 'Expires Soon', image: '🥬', expiryDays: 1 },
-    { id: 6, name: 'Greek Yogurt', category: 'Dairy', price: '$4.49', stock: 32, status: 'Fresh', image: '🍶', expiryDays: 5 },
-  ];
-
+  
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.category.toLowerCase().includes(searchTerm.toLowerCase())

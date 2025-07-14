@@ -81,3 +81,27 @@ export const getProducts = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
+export const setDiscount = async (req, res) => {
+  try {
+    const { id, discountedPrice } = req.body;
+
+    if (!id || discountedPrice === undefined) {
+      return res.status(400).json({ error: 'Product ID and discounted price are required.' });
+    }
+
+    const { data, error } = await supabase
+      .from('add_product')
+      .update({ price: discountedPrice })
+      .eq('id', id)
+      .select();
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    res.status(200).json(data);
+  } catch (error) {
+    console.error('Error applying discount:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

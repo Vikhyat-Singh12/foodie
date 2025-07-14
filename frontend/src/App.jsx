@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Footer from './components/Footer'
@@ -19,6 +20,7 @@ function App() {
         <Route path="/pricing" element={<PricingPlans />} />
       </Routes>
       <Footer />
+      <Toaster/>
     </Router>
   )
 }
