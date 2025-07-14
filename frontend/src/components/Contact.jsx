@@ -1,11 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import Swal from 'sweetalert2'
 
 const ContactSection = () => {
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "65738e45-3e15-4e0e-8dab-e6709066c6ca");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+      
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+     Swal.fire({
+     title: "Good job!",
+     text: "Thank you for Contact with Us.",
+      icon: "success"
+      });
+    }
+  };
+  
+
+  
+
   const contactMethods = [
     { icon: Mail, title: 'Email Us', info: 'hello@company.com', color: 'bg-blue-500' },
-    { icon: Phone, title: 'Call Us', info: '+1 (555) 123-4567', color: 'bg-green-500' },
-    { icon: MapPin, title: 'Visit Us', info: '123 Business St, City, State', color: 'bg-purple-500' },
+    { icon: Phone, title: 'Call Us', info: '+91 (555) 123-4567', color: 'bg-green-500' },
+    { icon: MapPin, title: 'Visit Us', info: 'Gorakhpur,UP,India', color: 'bg-purple-500' },
   ];
 
   return (
@@ -44,24 +77,15 @@ const ContactSection = () => {
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12 animate-fade-in animation-delay-500 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
           <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center transition-colors duration-300">Send us a message</h3>
           
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <form className="space-y-6" onSubmit={onSubmit}>
               <div>
-                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2 transition-colors duration-300">First Name</label>
+                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2 transition-colors duration-300" >Name</label>
                 <input
                   type="text"
                   className="w-full p-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-blue-500 focus:ring-0 transition-colors duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="Your first name"
+                  placeholder="Your name" name="name" required
                 />
-              </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2 transition-colors duration-300">Last Name</label>
-                <input
-                  type="text"
-                  className="w-full p-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-blue-500 focus:ring-0 transition-colors duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="Your last name"
-                />
-              </div>
+              
             </div>
             
             <div>
@@ -69,7 +93,7 @@ const ContactSection = () => {
               <input
                 type="email"
                 className="w-full p-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-blue-500 focus:ring-0 transition-colors duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                placeholder="your@email.com"
+                placeholder="your@email.com" name="email" required
               />
             </div>
             
@@ -78,7 +102,7 @@ const ContactSection = () => {
               <textarea
                 rows={5}
                 className="w-full p-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-blue-500 focus:ring-0 transition-colors duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                placeholder="Tell us how we can help you..."
+                placeholder="Tell us how we can help you..."  name="message" required
               />
             </div>
             
