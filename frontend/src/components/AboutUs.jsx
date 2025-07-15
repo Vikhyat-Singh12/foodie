@@ -9,10 +9,10 @@ const AboutSection = () => {
   ];
 
   const teamMembers = [
-    { name: 'Sarah Johnson', role: 'CEO & Founder' },
-    { name: 'Michael Chen', role: 'CTO' },
-    { name: 'Emily Rodriguez', role: 'Head of Product' },
-    { name: 'David Kim', role: 'Lead Developer' },
+    { name: 'RITESH PANDEY', role: 'Frontend Developer' },
+    { name: 'Harshit Tiwari', role: 'Frontend Developer' },
+    { name: 'Vikhyat Singh', role: 'Full Stack Web Developer' },
+    { name: 'Ankush Kumar', role: 'Full Stack Web Developer' },
   ];
 
   return (

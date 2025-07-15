@@ -1,13 +1,15 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const handleNavClick=useNavigate();
   const socialLinks = [
     { icon: Facebook, href: '#', color: 'hover:text-blue-600' },
     { icon: Twitter, href: '#', color: 'hover:text-blue-400' },
-    { icon: Instagram, href: '#', color: 'hover:text-pink-500' },
-    { icon: Linkedin, href: '#', color: 'hover:text-blue-700' },
-    { icon: Mail, href: '#', color: 'hover:text-green-500' },
+    { icon: Instagram, href: 'https://www.instagram.com/riteshpandey9450/', color: 'hover:text-pink-500' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/feed/', color: 'hover:text-blue-700' },
+    { icon: Mail, href: 'riteshnauli@gmail.com', color: 'hover:text-green-500' },
   ];
 
   return (
@@ -44,7 +46,7 @@ const Footer = () => {
             <ul className="space-y-3 text-center">
               <li>
                 <button 
-                  onClick={() => handleNavClick('home')}
+                  onClick={() => handleNavClick('/home')}
                   className="text-gray-300 dark:text-gray-400 hover:text-white transition-colors duration-300 hover:pl-2"
                 >
                   Home
@@ -52,15 +54,15 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavClick('about')}
+                  onClick={() => handleNavClick('/features')}
                   className="text-gray-300 dark:text-gray-400 hover:text-white transition-colors duration-300 hover:pl-2"
                 >
-                  About Us
+                  Feature
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavClick('pricing')}
+                  onClick={() => handleNavClick('/pricing')}
                   className="text-gray-300 dark:text-gray-400 hover:text-white transition-colors duration-300 hover:pl-2"
                 >
                   Pricing
@@ -68,10 +70,10 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavClick('contact')}
+                  onClick={() => handleNavClick('/contact')}
                   className="text-gray-300 dark:text-gray-400 hover:text-white transition-colors duration-300 hover:pl-2"
                 >
-                  Contact
+                  Contact 
                 </button>
               </li>
               <li>
@@ -102,7 +104,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center transition-colors duration-300">
           <p className="text-gray-400 dark:text-gray-500 mb-4 md:mb-0 transition-colors duration-300">
-            © 2024 FoodWise. All rights reserved.
+            ©️ 2024 FoodWise. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors duration-300">Privacy Policy</a>
